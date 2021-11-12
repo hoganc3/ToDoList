@@ -1,5 +1,6 @@
 package ToDoListPackage;
 
-public interface ListInterface {
-
+public interface ListInterface<T> {
+	
+	public void addEntry(T entry);
 }
