@@ -7,7 +7,7 @@ public class SortArray {
 				int indexOfNextSmallest = getIndexOfSmallest(a, index, n - 1);
 				swap(a, index, indexOfNextSmallest); // Assertion: a[0] <= a[1] <= . . . <= a[index] <= all other a[i].
 			} // end for
-			} // end selectionSort
+			} // end selectionSort 
 			
 			 // Finds the index of the smallest value in a portion of an array a.
 			 // Precondition: a.length > last >= first >= 0.
