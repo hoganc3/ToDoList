@@ -3,19 +3,30 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class MainGameClass {
 
-	public ArrayList<Integer> time = new ArrayList<>();
+	public static ArrayList<String> time = new ArrayList<>();
 	public static ArrayList<String> task = new ArrayList<>();
 	
 	
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		System.out.println("Welcome to the ToDoList!");
+		System.out.println("Welcome to the ToDoList!\n");
 		
 		
-		//Initialize the arraylists here. One for the names and one for the times of the tasks.
-		//then the sorting class can be called here to sort the tasks
+		createList(input);
 		
+		System.out.print(time);
+		System.out.print(task);	
 		
+		/*
+		while (there are still tasks) {
+			//when the user hits enter pop a task from the stack
+			if(input.nextLine().equals("") {
+			stack.pop()
+			}
+	}
+	
+	System.out.println("Congratulations on completing your list!");
+	*/	
 		
 	}
 	
@@ -24,25 +35,39 @@ public class MainGameClass {
 	//Then for the recursive part we can ask the user if they want to add more tasks. yes calls the method again and no will end the recursive method
 	public static void createList(Scanner input) {
 		
-	
 		System.out.println("Enter the name of the task: ");
-		String taskinput = input.next();
-		//now add this task to the arraylist (somehow)
+		String taskInput = input.nextLine();
+		task.add(taskInput);
 		
 		
-		System.out.println("Enter the time you want to complete this task: ");
-		int time = input.nextInt();
-		//now add this time to the other arraylist that is in main
+		System.out.println("Enter the time you want to complete this task (ex. 8:15): ");
+		String timeInput = input.nextLine();
+		time.add(timeInput);
+		
+		
+		String ampm = "";
+		while(!ampm.equals("AM") && !ampm.equals("PM")) {
+			System.out.println("AM or PM? (Enter 'AM' or 'PM' as your answer): ");
+			ampm = input.nextLine();
+		}
+		boolean result;
+		if (ampm.equals("AM")) {
+			result = true;
+		}
+		else if(ampm.equals("PM")) {
+			result = false;
+		}
 		
 		
 		//the user is asked if they want to add more tasks. entering y calls the method again, and any other input will just end the method and the rest of the program will continue
 		System.out.println("Do you want to add more tasks? (Enter 'y' to add more tasks): ");
-		String ans = input.next();
-		if (ans == "y") {
+		if (input.nextLine().equals("y")) {
 			createList(input);
 		}
 		
 		
+		//This is where the object will be created with the name, time, and am/pm boolean
+		
+		
 	}
-
 }
