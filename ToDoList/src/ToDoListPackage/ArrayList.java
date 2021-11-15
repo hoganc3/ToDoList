@@ -18,7 +18,7 @@ public class ArrayList<T> implements ListInterface<T> {
 	
 	public ArrayList(int initialCapacity) {
 		
-		integrityOK = false;
+		integrityOK = false; 
 		
 		if(initialCapacity < DEFAULT_CAPACITY) {
 			initialCapacity = DEFAULT_CAPACITY;

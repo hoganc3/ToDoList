@@ -25,7 +25,7 @@ public class task {
 		boolean min = false; //still looking at hours, true if looking at minutes
 		for(int i=0; i<time.length(); i++) {
 			if(charToString[i]==':') {
-				min = true;
+				min = true; 
 			}else {
 				if(min = true) {
 					timeMin += charToString;

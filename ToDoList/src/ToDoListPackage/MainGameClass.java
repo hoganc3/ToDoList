@@ -13,7 +13,7 @@ public class MainGameClass {
 		
 		
 		createList(input);
-		
+		 
 		System.out.print(time);
 		System.out.print(task);	
 		
