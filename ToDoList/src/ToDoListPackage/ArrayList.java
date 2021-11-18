@@ -1,5 +1,5 @@
 package ToDoListPackage;
-
+import java.util.Arrays;
 public class ArrayList<T> implements ListInterface<T> {
 	
 	//Still need to add check capacity method
@@ -29,28 +29,63 @@ public class ArrayList<T> implements ListInterface<T> {
 		
 		
 		@SuppressWarnings("unchecked")
-		T[] tempList = (T[]) new Object(initialCapacity+1);
+		T[] tempList = (T[]) new Object[initialCapacity + 1];
 		list = tempList;
 		numberOfEntries = 0;
 		integrityOK = true;
 	}
 	
-	public void addEntry(T entry) {
-		// TODO Auto-generated method stub
+	public void addEntry(T newEntry) {
+		checkIntegrity();
+		list[numberOfEntries + 1] = newEntry;
+		numberOfEntries++;
+		ensureCapacity();
+		} // end add
 		
-	}
 
 	
-	public void add(int newPosition, T newEntry) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void add(int givenPosition, T newEntry) {
+		checkIntegrity();
+		if ((givenPosition >= 1) && (givenPosition <= numberOfEntries + 1))
+		{
+		if (givenPosition <= numberOfEntries)
+		makeRoom(givenPosition);
+		list[givenPosition] = newEntry;
+		numberOfEntries++;
+		ensureCapacity();
+		}
+		else
+		throw new IndexOutOfBoundsException(
+		"Given position of add's new entry is out of bounds.");
+		} // end add
 
+		private void makeRoom(int givenPosition)
+		{
+			int newIndex = givenPosition;
+			int lastIndex = numberOfEntries;
+			for (int index = lastIndex; index >= newIndex; index--)
+				list[index + 1] = list[index];
+		} // end makeRoom
 	
 	public T remove(int givenPosition) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		checkIntegrity();
+		if ((givenPosition >= 1) && (givenPosition <= numberOfEntries))
+		{
+		// Assertion: The list is not empty
+		T result = list[givenPosition]; // Get entry to be removed
+		// Move subsequent entries toward entry to be removed,
+		// unless it is last in list
+		if (givenPosition < numberOfEntries)
+		removeGap(givenPosition);
+		list[numberOfEntries] = null;
+		numberOfEntries--;
+		return result; // Return reference to removed entry
+		}
+		else
+		throw new IndexOutOfBoundsException(
+		"Illegal position given to remove operation.");
+		} // end remove
+
 
 	
 	public void clear() {
@@ -60,9 +95,20 @@ public class ArrayList<T> implements ListInterface<T> {
 
 	
 	public T replace(int givenPosition, T newEntry) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		checkIntegrity();
+		// Assertion: The array list has room for another entry.
+		if ((givenPosition >= 1) && (givenPosition <= numberOfEntries + 1))
+		{
+		if (givenPosition <= numberOfEntries)
+		makeRoom(givenPosition);
+		list[givenPosition] = newEntry;
+		numberOfEntries++;
+		ensureCapacity(); // Ensure enough room for next add
+		}
+		else
+		throw new IndexOutOfBoundsException(
+		"Given position of add's new entry is out of bounds.");
+		} // end add
 
 	
 	public T getEntry(int givenPosition) {
@@ -72,27 +118,63 @@ public class ArrayList<T> implements ListInterface<T> {
 
 	
 	public T[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		checkIntegrity();
+		// The cast is safe because the new array contains null entries
+		@SuppressWarnings("unchecked")
+		T[] result = (T[])new Object[numberOfEntries];
+		for (int index = 0; index < numberOfEntries; index++)
+		{
+		result[index] = list[index + 1];
+		} // end for
+		
+		return result;
+		} // end toArray
+
 
 	
 	public boolean contains(T anEntry) {
-		// TODO Auto-generated method stub
-		return false;
+		checkIntegrity();
+		boolean found = false;
+		int index = 1;
+		while (!found && (index <= numberOfEntries))
+		{
+			if (anEntry.equals(list[index]))
+				found = true;
+			index++;
+		} // end while
+		return found;
 	}
 
 	
 	public int getLength() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+		return numberOfEntries;
+	} // end contains
 
 	
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return numberOfEntries == 0; 
 	}
+	private void removeGap(int givenPosition)
+	{
+	int removedIndex = givenPosition;
+	for (int index = removedIndex; index < numberOfEntries; index++)
+	list[index] = list[index + 1];
+	} // end removeGap
 	
-	
+	private void ensureCapacity(){
+		int capacity = list.length - 1;
+		if (numberOfEntries >= capacity){
+			int newCapacity = 2 * capacity;
+			checkCapacity(newCapacity); // Is capacity too big?
+			list = Arrays.copyOf(list, newCapacity + 1);
+		} // end if
+		} // end ensureCapacity
+	private void checkCapacity(int initialCapacity) {
+		if(initialCapacity > MAX_CAPACITY) {
+			throw new IllegalStateException("Attempt to create a list " +
+                    "whose capacity exceeds " +
+                    "allowed maximum.");
+		}
+
+	}
 }
