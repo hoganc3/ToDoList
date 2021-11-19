@@ -24,16 +24,13 @@ public class MainGameClass {
         task tasks[] = new task[time.size()];
         Integer sortedTimes[] = new Integer[tasks.length];
 
-        for (int i = 0; i <= time.size() - 1; i++) {
-            System.out.printf("Task: %s, Time: %s, AM: %b%n", task.get(i), time.get(i), ap.get(i));
-            tasks[i] = new task(task.get(i), ap.get(i), time.get(i));
-            sortedTimes[i] = tasks[i].StringToInteger();
+        tasks = sort(tasks, sortedTimes);
+        System.out.println();
+        for (int i = 0; i <= tasks.length - 1; i++) {
+            System.out.printf("Task: %s, Time: %s, AM: %b%n", tasks[i].getTask(),
+                    tasks[i].getTime(), tasks[i].getAmPm());
         }
 
-        SortArray.selectionSort(sortedTimes, sortedTimes.length);
-        for (int i = 0; i <= sortedTimes.length - 1; i++) {
-            System.out.print(sortedTimes[i]);
-        }
     }
 
     // a recursive method where the user adds tasks.
@@ -52,17 +49,25 @@ public class MainGameClass {
         time.add(timeInput);
 
         String ampm = "";
-        while (!ampm.equals("AM") && !ampm.equals("PM")) {
+        boolean valid = false;
+        while (valid == false) {
             System.out.println("AM or PM? (Enter 'AM' or 'PM' as your answer): ");
             ampm = input.nextLine();
+            switch (ampm) {
+                case "AM":
+                    ap.add(true);
+                    valid = true;
+                    break;
+                case "PM":
+                    ap.add(false);
+                    valid = true;
+                    break;
+                default:
+                    valid = false;
+                    break;
+            }
+
         }
-        boolean result = false;
-        if (ampm.equals("AM")) {
-            result = true;
-        } else if (ampm.equals("PM")) {
-            result = false;
-        }
-        ap.add(result);
 
         // the user is asked if they want to add more tasks. entering y calls the method again, and
         // any other input will just end the method and the rest of the program will continue
@@ -72,6 +77,29 @@ public class MainGameClass {
         }
 
         // This is where the object will be created with the name, time, and am/pm boolean
-
     }
+
+    public static task[] sort(task[] tasks, Integer[] sortedTimes) {
+        for (int i = 0; i <= time.size() - 1; i++) {
+            System.out.printf("Task: %s, Time: %s, AM: %b%n", task.get(i), time.get(i), ap.get(i));
+            tasks[i] = new task(task.get(i), ap.get(i), time.get(i));
+            sortedTimes[i] = tasks[i].StringToInteger();
+        }
+
+        SortArray.selectionSort(sortedTimes, sortedTimes.length);
+
+        for (int i = 0; i <= sortedTimes.length - 1; i++) {
+            for (int j = 0; j <= tasks.length - 1; j++) {
+                if (sortedTimes[i] == tasks[j].getIntegerTime()) {
+                    // Swap the position in tasks[] at j with i
+                    task temp = tasks[i];
+                    tasks[i] = tasks[j];
+                    tasks[j] = temp;
+                    // end swap
+                }
+            }
+        }
+        return tasks;
+    }
+
 }
