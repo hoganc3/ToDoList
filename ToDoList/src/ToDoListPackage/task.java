@@ -7,6 +7,7 @@ public class task {
 	int val;
 	int timeLength;
 	int order;
+	int integerTime;
 	
 	public task(String task, boolean AmPm, String time) {
 		
@@ -42,20 +43,20 @@ public class task {
 		}
 		
 		//Changes the String to an integer
-		int totTimeInt = Integer.valueOf(totTime);
+		this.integerTime = Integer.valueOf(totTime);
 		
 		
 		//If its pm then 1200 is added to the hours (24 hour time)
-		if(AmPm == false && totTimeInt != 1200) {
-			totTimeInt += 1200;
-		}else if(totTimeInt == 1200){
+		if(AmPm == false && integerTime != 1200) {
+			integerTime += 1200;
+		}else if(integerTime == 1200){
 			if(AmPm == true) {
-				totTimeInt += -1200;
+				integerTime += -1200;
 			}
 		}
 		
 		//returns value
-		return totTimeInt;
+		return integerTime;
 	}
 	
 	
@@ -89,5 +90,10 @@ public class task {
 	public int getOrder() {
 		return order;
 	}
+	
+	public int getIntegerTime() {
+	    return integerTime;
+	}
+	
 
 }
