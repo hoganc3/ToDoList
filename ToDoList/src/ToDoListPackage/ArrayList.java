@@ -94,7 +94,7 @@ public class ArrayList<T> implements ListInterface<T> {
 	}
 
 	
-	public T replace(int givenPosition, T newEntry) {
+	public replace(int givenPosition, T newEntry) {
 		checkIntegrity();
 		// Assertion: The array list has room for another entry.
 		if ((givenPosition >= 1) && (givenPosition <= numberOfEntries + 1))
