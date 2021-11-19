@@ -89,7 +89,9 @@ public class ArrayList<T> implements ListInterface<T> {
 
 	
 	public void clear() {
-		// TODO Auto-generated method stub
+		while(!isEmpty()) {
+			remove(0);
+		}
 		
 	}
 
