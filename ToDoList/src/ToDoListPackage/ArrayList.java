@@ -96,7 +96,7 @@ public class ArrayList<T> implements ListInterface<T> {
 	}
 
 	
-	public T replace(int givenPosition, T newEntry) {
+	public replace(int givenPosition, T newEntry) {
 		checkIntegrity();
 		T original = list[givenPosition-1];
 		list[givenPosition-1] = newEntry;
