@@ -100,14 +100,13 @@ public class ArrayList<T> implements ListInterface<T> {
 		if ((givenPosition >= 1) && (givenPosition <= numberOfEntries + 1))
 		{
 		if (givenPosition <= numberOfEntries)
-		makeRoom(givenPosition);
-		list[givenPosition] = newEntry;
-		numberOfEntries++;
-		ensureCapacity(); // Ensure enough room for next add
+			makeRoom(givenPosition);
+			list[givenPosition] = newEntry;
+			numberOfEntries++;
+			ensureCapacity(); // Ensure enough room for next add
 		}
 		else
-		throw new IndexOutOfBoundsException(
-		"Given position of add's new entry is out of bounds.");
+			throw new IndexOutOfBoundsException("Given position of add's new entry is out of bounds.");
 		} // end add
 
 	
@@ -177,4 +176,11 @@ public class ArrayList<T> implements ListInterface<T> {
 		}
 
 	}
+	
+	// Throws an exception if this object is not initialized.
+	private void checkIntegrity(){
+		if (!integrityOK)
+				throw new SecurityException("ArrayBag object is corrupt.");
+	} // end checkIntegrity
+
 }
