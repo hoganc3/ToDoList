@@ -96,18 +96,10 @@ public class ArrayList<T> implements ListInterface<T> {
 	
 	public T replace(int givenPosition, T newEntry) {
 		checkIntegrity();
-		// Assertion: The array list has room for another entry.
-		if ((givenPosition >= 1) && (givenPosition <= numberOfEntries + 1))
-		{
-		if (givenPosition <= numberOfEntries)
-			makeRoom(givenPosition);
-			list[givenPosition] = newEntry;
-			numberOfEntries++;
-			ensureCapacity(); // Ensure enough room for next add
-		}
-		else
-			throw new IndexOutOfBoundsException("Given position of add's new entry is out of bounds.");
-		} // end add
+		T original = list[givenPosition-1];
+		list[givenPosition-1] = newEntry;
+		return original;
+		} // end replace
 
 	
 	public T getEntry(int givenPosition) {
