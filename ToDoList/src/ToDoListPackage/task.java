@@ -45,10 +45,13 @@ public class task {
 		int totTimeInt = Integer.valueOf(totTime);
 		
 		
-		
 		//If its pm then 1200 is added to the hours (24 hour time)
-		if(AmPm == false) {
+		if(AmPm == false && totTimeInt != 1200) {
 			totTimeInt += 1200;
+		}else if(totTimeInt == 1200){
+			if(AmPm == true) {
+				totTimeInt += -1200;
+			}
 		}
 		
 		//returns value
