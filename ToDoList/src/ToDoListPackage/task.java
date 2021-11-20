@@ -95,5 +95,12 @@ public class task {
 	    return integerTime;
 	}
 	
+	public String toString() {
+		if(AmPm) {
+			return task + " " + time + " AM";
+		}
+		else
+			return task + " " + time + " PM";
+	}
 
 }

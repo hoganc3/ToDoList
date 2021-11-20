@@ -30,7 +30,8 @@ public class MainGameClass {
             System.out.printf("Task: %s, Time: %s, AM: %b%n", tasks[i].getTask(),
                     tasks[i].getTime(), tasks[i].getAmPm());
         }
-
+        Stack<task> taskStack = createStack(tasks);
+        System.out.println(taskStack);
     }
 
     // a recursive method where the user adds tasks.
@@ -100,6 +101,13 @@ public class MainGameClass {
             }
         }
         return tasks;
+    }
+    public static Stack<task> createStack(task[] tasks) {
+    	Stack<task> taskStack = new Stack<>();
+    	for(int i = tasks.length-1; i > -1; i--) {
+    		taskStack.push(tasks[i]);
+    	}
+    	return taskStack;
     }
 
 }
