@@ -9,7 +9,7 @@ public class MainGameClass {
     public static ArrayList<String> time = new ArrayList<>();
     public static ArrayList<String> task = new ArrayList<>();
     public static ArrayList<Boolean> ap = new ArrayList<>();
-
+    public static int gameTime = 0;
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to the ToDoList!\n");
@@ -32,6 +32,25 @@ public class MainGameClass {
         }
         Stack<task> taskStack = createStack(tasks);
         System.out.println(taskStack);
+        
+        System.out.println("Type out the task to mark it as complete.");
+        /**while(!taskStack.isEmpty()) {
+        	if(input.nextLine().equals(taskStack.peek().getTask()))
+        		taskStack.pop();
+        	gameTime+=50;
+        	if(gameTime%100!=0) 
+        		System.out.println(gameTime/10 + ":30");
+        	
+        	else
+        		System.out.println(gameTime/10 + ":00");
+        	if(gameTime > taskStack.peek().getTime())
+        }
+        */
+        while(!taskStack.isEmpty()) {
+        	if(input.nextLine().equals(""))
+        		taskStack.pop();
+        }
+        	System.out.println("Congratulations, you got all of your tasks done on the to-do list!");
     }
 
     // a recursive method where the user adds tasks.
