@@ -3,7 +3,7 @@ package ToDoListPackage;
 import java.util.EmptyStackException;
 
 public interface StackInterface<T> {
-	 /** Adds a new entry to the top of this stack.
+	/** Adds a new entry to the top of this stack.
      * @param newEntry An object to be added to the stack. 
      */
     public void push(T newEntry);
@@ -27,7 +27,4 @@ public interface StackInterface<T> {
 
     /** Removes all entries from this stack */
     public void clear();
-
-} // end StackInterface
-
-
+}

@@ -3,15 +3,15 @@ package ToDoListPackage;
 import java.util.EmptyStackException;
 import java.util.Vector;
 
-public final class Stack <T> implements StackInterface<T>{
+/**
+ * A class of stacks whose entries are stored in a vector.
+ */
 
-	private Vector<T> stack; // Last element is the top entry in stack
+public final class Stack<T> implements StackInterface<T> {
+
+    private Vector<T> stack; // Last element is the top entry in stack
     private boolean initialized = false;
-    
-    //NICK:
-    //Should we even have a default capacity and if so, what number?
-    //It was originally 50 but I changed it to 0. If this causes an error just change it back.
-    private static final int DEFAULT_INITIAL_CAPACITY = 0;
+    private static final int DEFAULT_INITIAL_CAPACITY = 50;
     private static final int MAX_CAPACITY = 10000;
 
     public Stack() {
@@ -24,7 +24,6 @@ public final class Stack <T> implements StackInterface<T>{
         initialized = true;
     } // end constructor
 
-    
     /** 
      * Throws an exception if this object is not initialized.
      */
@@ -54,7 +53,7 @@ public final class Stack <T> implements StackInterface<T>{
 
     }
 
-    /** Removes and returns this stack’s top entry.
+    /** Removes and returns this stack's top entry.
      * @return  The object at the top of the stack.
      * @throws EmptyStackException if the stack is empty before the operation. 
      */
@@ -89,7 +88,7 @@ public final class Stack <T> implements StackInterface<T>{
     /** Removes all entries from this stack */
     public void clear(){
         stack.clear();
-    } // end celar
+    } // end clear
 
     /** Override the toString() method so that we get a more useful display of 
      * the contents in the stack.
@@ -107,5 +106,4 @@ public final class Stack <T> implements StackInterface<T>{
         return result;
     }
 
-   
-}
+} // end VectorStack

@@ -34,24 +34,44 @@ public class MainGameClass {
         System.out.println(taskStack);
         
         System.out.println("Type out the task to mark it as complete.");
-        /**while(!taskStack.isEmpty()) {
-        	if(input.nextLine().equals(taskStack.peek().getTask()))
-        		taskStack.pop();
-        	gameTime+=50;
-        	if(gameTime%100!=0) 
-        		System.out.println(gameTime/10 + ":30");
-        	
-        	else
-        		System.out.println(gameTime/10 + ":00");
-        	if(gameTime > taskStack.peek().getTime())
-        }
-        */
         while(!taskStack.isEmpty()) {
-        	if(input.nextLine().equals(""))
+        	task currentTask = taskStack.peek(); 
+        	if(input.nextLine().equals(currentTask.getTask())){
         		taskStack.pop();
-        }
+        		System.out.println(taskStack);
+        	}
+        	if(taskStack.isEmpty()) {
+        		break;
+        	}
+        	if(gameTime%100 == 0) {
+        		gameTime+=30;
+        	}
+        	else {
+        		gameTime+=70;
+        	}
+        	if(gameTime%100!=0) 
+        		System.out.println(gameTime/100 + ":30");
+
+        	else 
+        		System.out.println(gameTime/100 + ":00");
+        	if(gameTime > taskStack.peek().integerTime) {
+        		System.out.println("You missed a task! Manage your time better next time.");
+        		System.exit(0);
+        	}
+        	if(gameTime >=2400) {
+        		System.out.println("You ran out of time today. Try again tomorrow.");
+        		System.exit(0);
+        	}
+        	}
+        	
         	System.out.println("Congratulations, you got all of your tasks done on the to-do list!");
-    }
+        	}
+        
+        //while(!taskStack.isEmpty()) {
+        	//if(input.nextLine().equals(""))
+        		//taskStack.pop();
+       // }
+
 
     // a recursive method where the user adds tasks.
     // The user can add the task and time in this class and it gets added into the arraylists that
@@ -128,5 +148,6 @@ public class MainGameClass {
     	}
     	return taskStack;
     }
+    }
 
-}
+
