@@ -10,15 +10,17 @@ public class MainGameClass {
     public static ArrayList<String> task = new ArrayList<>();
     public static ArrayList<Boolean> ap = new ArrayList<>();
     public static int gameTime = 0;
-    
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to the ToDoList!\n");
         System.out.println("Instructions: ");
-        System.out.println("Type in your tasks then you will be prompt to press y when you are done.");
+        System.out.println(
+                "Type in your tasks then you will be prompt to press y when you are done.");
         System.out.println("Press enter to go through the day.");
         System.out.println("Type in the task to complete it.");
-        System.out.println("In order to win you must type in all your tasks before the time deadline you input for your tasks.");
+        System.out.println(
+                "In order to win you must type in all your tasks before the time deadline you input for your tasks.");
         createList(input);
 
         /*
@@ -35,48 +37,50 @@ public class MainGameClass {
             System.out.printf("Task: %s, Time: %s, AM: %b%n", tasks[i].getTask(),
                     tasks[i].getTime(), tasks[i].getAmPm());
         }
+
         Stack<task> taskStack = createStack(tasks);
+
         System.out.println(taskStack);
-        
-        System.out.println("Type out the task to mark it as complete. Press the enter key to skip 30 minutes into the day");
-        while(!taskStack.isEmpty()) {
-        	task currentTask = taskStack.peek(); 
-        	if(input.nextLine().equals(currentTask.getTask())){
-        		taskStack.pop();
-        		System.out.println(taskStack);
-        	}
-        	if(taskStack.isEmpty()) {
-        		break;
-        	}
-        	if(gameTime%100 == 0) {
-        		gameTime+=30;
-        	}
-        	else {
-        		gameTime+=70;
-        	}
-        	if(gameTime%100!=0) 
-        		System.out.println(gameTime/100 + ":30");
 
-        	else 
-        		System.out.println(gameTime/100 + ":00");
-        	if(gameTime > taskStack.peek().integerTime) {
-        		System.out.println("You missed a task! Manage your time better next time.");
-        		System.exit(0);
-        	}
-        	if(gameTime >=2400) {
-        		System.out.println("You ran out of time today. Try again tomorrow.");
-        		System.exit(0);
-        	}
-        	}
-        	
-        	System.out.println("Congratulations, you got all of your tasks done on the to-do list!");
-        	}
-        
-        //while(!taskStack.isEmpty()) {
-        	//if(input.nextLine().equals(""))
-        		//taskStack.pop();
-       // }
+        System.out.println(
+                "Type out the task to mark it as complete. Press the enter key to skip 30 minutes into the day");
+        while (!taskStack.isEmpty()) {
+            task currentTask = taskStack.peek();
+            if (input.nextLine().equals(currentTask.getTask())) {
+                taskStack.pop();
+                System.out.println(taskStack);
+            }
+            if (taskStack.isEmpty()) {
+                break;
+            }
+            if (gameTime % 100 == 0) {
+                gameTime += 30;
+            } else {
+                gameTime += 70;
+            }
+            if (gameTime % 100 != 0) {
+                System.out.println(gameTime / 100 + ":30");
 
+            } else {
+                System.out.println(gameTime / 100 + ":00");
+            }
+            if (gameTime > taskStack.peek().integerTime) {
+                System.out.println("You missed a task! Manage your time better next time.");
+                System.exit(0);
+            }
+            if (gameTime >= 2400) {
+                System.out.println("You ran out of time today. Try again tomorrow.");
+                System.exit(0);
+            }
+        }
+
+        System.out.println("Congratulations, you got all of your tasks done on the to-do list!");
+    }
+
+    // while(!taskStack.isEmpty()) {
+    // if(input.nextLine().equals(""))
+    // taskStack.pop();
+    // }
 
     // a recursive method where the user adds tasks.
     // The user can add the task and time in this class and it gets added into the arraylists that
@@ -92,7 +96,6 @@ public class MainGameClass {
         System.out.println("Enter the time you want to complete this task (ex. 8:15): ");
         String timeInput = input.nextLine();
         time.add(timeInput);
-        
 
         String ampm = "";
         boolean valid = false;
@@ -127,7 +130,6 @@ public class MainGameClass {
 
     public static task[] sort(task[] tasks, Integer[] sortedTimes) {
         for (int i = 0; i <= time.size() - 1; i++) {
-            System.out.printf("Task: %s, Time: %s, AM: %b%n", task.get(i), time.get(i), ap.get(i));
             tasks[i] = new task(task.get(i), ap.get(i), time.get(i));
             sortedTimes[i] = tasks[i].StringToInteger();
         }
@@ -147,13 +149,12 @@ public class MainGameClass {
         }
         return tasks;
     }
+
     public static Stack<task> createStack(task[] tasks) {
-    	Stack<task> taskStack = new Stack<>();
-    	for(int i = tasks.length-1; i > -1; i--) {
-    		taskStack.push(tasks[i]);
-    	}
-    	return taskStack;
+        Stack<task> taskStack = new Stack<>();
+        for (int i = tasks.length - 1; i > -1; i--) {
+            taskStack.push(tasks[i]);
+        }
+        return taskStack;
     }
-    }
-
-
+}
