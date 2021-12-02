@@ -10,10 +10,15 @@ public class MainGameClass {
     public static ArrayList<String> task = new ArrayList<>();
     public static ArrayList<Boolean> ap = new ArrayList<>();
     public static int gameTime = 0;
+    
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("Welcome to the ToDoList!\n");
-
+        System.out.println("Instructions: ");
+        System.out.println("Type in your tasks then you will be prompt to press y when you are done.");
+        System.out.println("Press enter to go through the day.");
+        System.out.println("Type in the task to complete it.");
+        System.out.println("In order to win you must type in all your tasks before the time deadline you input for your tasks.");
         createList(input);
 
         /*
@@ -33,7 +38,7 @@ public class MainGameClass {
         Stack<task> taskStack = createStack(tasks);
         System.out.println(taskStack);
         
-        System.out.println("Type out the task to mark it as complete.");
+        System.out.println("Type out the task to mark it as complete. Press the enter key to skip 30 minutes into the day");
         while(!taskStack.isEmpty()) {
         	task currentTask = taskStack.peek(); 
         	if(input.nextLine().equals(currentTask.getTask())){
@@ -87,6 +92,7 @@ public class MainGameClass {
         System.out.println("Enter the time you want to complete this task (ex. 8:15): ");
         String timeInput = input.nextLine();
         time.add(timeInput);
+        
 
         String ampm = "";
         boolean valid = false;
