@@ -4,6 +4,13 @@
 ## Installation
 Copy repo and open as a Java project.
 
+## Instructions
+1. Enter task name; ex. Make Breakfast
+2. Enter task time; ex. 9:00
+3. Enter AM or PM; ex. AM
+4. 'y' to enter more tasks
+5. Iterate through day and enter task to complete.
+
 ## Credits
 - Nick Faro
 - Jake Rausch
